@@ -1,7 +1,7 @@
 slaught.github.io
 =================
 
-blog
+[blog](http://slaught.github.io)
 
-rake theme:install git="https://github.com/dhulihan/hooligan.git"
+Theme: https://github.com/dhulihan/hooligan.git
 
