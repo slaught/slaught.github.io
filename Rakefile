@@ -41,7 +41,7 @@ module JB
 end #JB
 
 # Usage: rake post title="A Title" [date="2012-02-09"] [tags=[tag1,tag2]] [category="category"]
-desc "Begin a new post in #{CONFIG['posts']}"
+desc "Begin a new post in #{CONFIG['posts']} [title='title'] [tags='[]'] [date='Time.now'] [category='']"
 task :post do
   abort("rake aborted: '#{CONFIG['posts']}' directory not found.") unless FileTest.directory?(CONFIG['posts'])
   title = ENV["title"] || "new-post"
@@ -76,7 +76,7 @@ end # task :post
 # Usage: rake page name="about.html"
 # You can also specify a sub-directory path.
 # If you don't specify a file extention we create an index.html at the path specified
-desc "Create a new page."
+desc "Create a new page. [name='new-page.md']"
 task :page do
   name = ENV["name"] || "new-page.md"
   filename = File.join(SOURCE, "#{name}")
@@ -165,7 +165,7 @@ namespace :theme do
   #   rake theme:install name="cool-theme"
   #
   # Returns Success/failure messages.
-  desc "Install theme"
+  desc "Install theme [git=url] [name='name']"
   task :install do
     if ENV["git"]
       manifest = theme_from_git_url(ENV["git"])
@@ -226,7 +226,7 @@ namespace :theme do
   #   rake theme:package name="twitter"
   #
   # Returns Success/failure messages.
-  desc "Package theme"
+  desc "Package theme [name='twitter']"
   task :package do
     name = ENV["name"].to_s.downcase
     theme_path = JB::Path.build(:themes, :node => name)
