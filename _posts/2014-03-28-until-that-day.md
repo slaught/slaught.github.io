@@ -7,6 +7,8 @@ tags: []
 ---
 {% include JB/setup %}
 
+## Until that day
+
 This is what I wrote about my last day at Enova.
 
 This is my last day at Enova. It has been 2453 days since I started. I
@@ -17,7 +19,7 @@ working people. Everyone here has made me a better person and a better
 professional. I am very thankful to you all.
 
 
-#### Meditation XVII by John Donne
+### Meditation XVII by John Donne
 
 <pre>
 No man is an island,
@@ -37,5 +39,3 @@ It tolls for thee.
 
 
 Thank you,
-
-Chad
