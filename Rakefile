@@ -76,13 +76,16 @@ end # task :post
 desc "publish posts"
 task :publish do
     postChanges = `git status --porcelain |grep _posts `
+    posts = []
     postChanges.split(/\n/).each {|line|
            if line =~ /^(..) (.+)$/  then
              case $1 
                 when "??" 
                     `git add #{$2}`
+                    posts.append($2)
                 when " M"
                     `git add #{$2}`
+                    posts.append($2)
                 when " D"
                     `git rm #{$2}`
                 else
@@ -90,7 +93,7 @@ task :publish do
                 end
            end
     }
-    puts `git commit    `
+    puts `git commit -m "new post: #{posts.join(" ")}" `
     puts "Push out as needed"
 end
 
