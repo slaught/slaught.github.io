@@ -1,0 +1,35 @@
+#!/usr/bin/ruby
+
+require 'pathname'
+
+def find_post(filename)
+    posts = Pathname.new("_posts")
+    f = Pathname.new(filename)
+    if f.exist? then
+        f
+    elsif (posts + f).exist? then
+        posts + f
+    else
+        nil
+    end         
+end
+
+def move_post(filename)
+    return nil unless filename.exist?
+    drafts = Pathname.new("_drafts")
+    dest = drafts+filename.basename()
+    filename.rename(dest)
+    dest if dest.exist?
+end
+
+if ARGV.length < 1 then
+    puts "#{$0} postfile"
+    exit -1
+end
+
+fn = ARGV[0]
+
+post = find_post(fn)
+puts move_post(post)
+
+

@@ -73,6 +73,27 @@ task :post do
   end
 end # task :post
 
+desc "publish posts"
+task :publish do
+    postChanges = `git status --porcelain |grep _posts `
+    postChanges.split(/\n/).each {|line|
+           if line =~ /^(..) (.+)$/  then
+             case $1 
+                when "??" 
+                    `git add #{$2}`
+                when " M"
+                    `git add #{$2}`
+                when " D"
+                    `git rm #{$2}`
+                else
+                    puts "Skipping #{$2}"
+                end
+           end
+    }
+    puts `git commit    `
+    puts "Push out as needed"
+end
+
 # Usage: rake page name="about.html"
 # You can also specify a sub-directory path.
 # If you don't specify a file extention we create an index.html at the path specified
