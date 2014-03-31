@@ -75,17 +75,19 @@ end # task :post
 
 desc "publish posts"
 task :publish do
+    ENV['VISUAL'] = "gvim"
     postChanges = `git status --porcelain |grep _posts `
-    posts = []
+    posts = Array.new
     postChanges.split(/\n/).each {|line|
            if line =~ /^(..) (.+)$/  then
+             filename = $2
              case $1 
                 when "??" 
-                    `git add #{$2}`
-                    posts.append($2)
+                    `git add #{filename}`
+                    posts << filename
                 when " M"
-                    `git add #{$2}`
-                    posts.append($2)
+                    `git add #{filename}`
+                    posts << filename
                 when " D"
                     `git rm #{$2}`
                 else
@@ -93,7 +95,7 @@ task :publish do
                 end
            end
     }
-    puts `git commit -m "new post: #{posts.join(" ")}" `
+    puts `git commit -e -m "new post: #{posts.join(" ")}" `
     puts "Push out as needed"
 end
 
