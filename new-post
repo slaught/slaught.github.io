@@ -60,7 +60,7 @@ def create_post(title)
     raise "post already exists: #{filename} !"
   end
   
-  puts "Creating new post: \n#{filename}"
+  puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
     post.puts "---"
     post.puts "layout: post"
@@ -71,13 +71,14 @@ def create_post(title)
     post.puts "---"
     post.puts "{% include JB/setup %}"
   end
-
+  filename
 end
 
 def main
     title = ARGV.join(" ").squeeze(" \t").strip
-    create_post(title)
-
+    fn = create_post(title)
+    `gvim #{fn}`
+    
 end
 
 
