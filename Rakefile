@@ -95,7 +95,7 @@ task :publish do
                 end
            end
     }
-    puts `git commit -e -m "new post: #{posts.join(" ")}" `
+    sh "git commit -e -m 'new post: #{posts.join(' ')}' "
     puts "Push out as needed"
 end
 
