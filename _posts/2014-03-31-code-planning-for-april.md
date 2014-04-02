@@ -26,6 +26,14 @@ support drafts but no interface besides the filesystem.
 * Enki Cloud v4
 * Enki to rbx
 * blog scripts
+* mmap for _*require*_s in Rubinius
+* LVS router
+* scalable URL router
+* git new-clone script
+
+
+
+
 
 As I work on pieces I'll do a writeup of what I am doing and why. 
 
