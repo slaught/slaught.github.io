@@ -1,6 +1,6 @@
 ---
 layout: page
-title: First post
+title: "Industrial Software Research"
 tagline: 
 ---
 {% include JB/setup %}
