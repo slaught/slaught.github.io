@@ -17,7 +17,7 @@ I have been struggling with how to tell this story. There are several
 competing things which I want to do. I want to talk about the current thinking
 on the topic, I want to talk about how the current thinking was arrived at, I
 want to talk about my influences, I want to reference @brixen's own story on
-this topic and I want to talk about an interesting research qustion underlying
+this topic and I want to talk about an interesting research question underlying
 everything. 
 
 This is a bit too much to write about. I also only wish to speak for myself.
@@ -45,12 +45,12 @@ concurrent, scalable language implementation.
 
 Scalablity can mean many things. 
 : code scaling across multicore CPUs
-: code scaling mulitple machines
+: code scaling multiple machines
 : teams scaling development of a large codebase 
 : products scaling to large number of customers 
 
 Many companies have Ruby codebases they have rewritten in other languages
-because MRI is slow and not concurrent, MRI is unweidling and 
+because MRI is slow and not concurrent, MRI is unwieldy and 
 there are issues with large code bases and dynamic languages in general. 
 
 I scaled Enova's legacy Ruby 1.8.7 app to millions of customers 
@@ -63,15 +63,31 @@ dollars in savings and reduced future spending.
 Most companies don't have me working for them so the only option is to
 rewrite. 
 
-
-
-
 ## Plans for Tools
-
+There is a series of tools which need to be developed. The first is a Ruby
+language migration tool. The migration tool will identify areas in your code
+bases which need to be changed to run the code in a different version of the
+language. Moving from Ruby 1.8.7 to Ruby 2.0 would identify
+syntax and semantic problems and highlight the parts of the code which must be
+changed. The second tool is a method to quantify the quality of a testsuite.
+The main concept is to measure how well a test suite is working beyond just
+simply coverage. The questions to be answered are like 'how many tests are
+covering a particular area', 'how much redundancy is in the tests', 'are the
+tests organized and grouped effectively'. The third tool is a code database.
+The database has all the information that the interpretor generates about a
+program. The database can also store performance statistics. This provides a
+base on which to build other tools. The fourth tool is a ruby source code
+pretty printer similar to _go fmt_.
 
 ## Tying into Developer Workflow
-
-
-
-
+With these new tools, the questions naturally arise of how and when 
+to use them. How can these tools fit together and be used
+by developers in their everyday work? A collection of command line programs is
+the obvious answer. But it also means developers will have to spend time on
+discovery and figuring out how the tools work together themselves. This is the
+way of the weak. I want to find a way to integrate these tools into a seamless
+system. I want these tools to have a defined part in the workflow of most
+developers. I want a nice visualization of the codes runtime statistics and a
+representation of what it is doing that is useful to the developer. This is
+the way of hubris and the stupid. :)
 
