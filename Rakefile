@@ -81,21 +81,26 @@ task :publish do
     postChanges.split(/\n/).each {|line|
            if line =~ /^(..) (.+)$/  then
              filename = $2
+             msg = nil
              case $1 
                 when "??" 
                     `git add #{filename}`
-                    posts << filename
+                    msg = 'new'
                 when " M"
                     `git add #{filename}`
-                    posts << filename
+                    msg ='modified'
                 when " D"
-                    `git rm #{$2}`
+                    `git rm #{filename}`
+                    msg = 'dropping'
                 else
                     puts "Skipping #{$2}"
                 end
+                unless msg.nil?
+                  posts << "#{msg} post: #{filename}"
+                end
            end
     }
-    sh "git commit -e -m 'new post: #{posts.join(' ')}' "
+    sh "git commit -e -m 'posts.\n\n#{posts.join("\n")}' "
     puts "Push out as needed"
 end
 
